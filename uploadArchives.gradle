@@ -1,0 +1,84 @@
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            println 'repoType : ' + rootProject.ext.repoType
+
+            if ((rootProject.ext.repoType).equals("release")) {
+                repository(url: releaseRepositoryUrl) {
+
+                    authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+
+                    moduleVersion_release.each {
+
+                        def module = it
+
+                        if (it.value.groupId == ARTIFACTID) {
+                            pom.project {
+                                version module.value.version
+                                groupId module.value.group
+                                artifactId module.value.groupId
+                                packaging module.value.type
+                                description module.value.description
+                            }
+                        }
+                    }
+
+                    pom.whenConfigured { pom ->
+                        pom.dependencies.forEach { dep ->
+                            if (dep.getVersion() == "unspecified") {
+                                moduleVersion_release.each {
+
+                                    if (dep.getArtifactId() == it.value.groupId) {
+                                        dep.setGroupId(it.value.group)
+                                        dep.setVersion(it.value.version)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    println '上传到远程正式仓库'
+
+                }
+            } else if ((rootProject.ext.repoType).equals("snapshot")) {
+                repository(url: snapshotRepositoryUrl) {
+
+                    authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+
+                    moduleVersion_snapshot.each {
+
+                        def module = it
+
+                        if (it.value.groupId == ARTIFACTID) {
+                            pom.project {
+                                version module.value.version
+                                groupId module.value.group
+                                artifactId module.value.groupId
+                                packaging module.value.type
+                                description module.value.description
+                            }
+                        }
+                    }
+
+                    pom.whenConfigured { pom ->
+                        pom.dependencies.forEach { dep ->
+                            if (dep.getVersion() == "unspecified") {
+                                moduleVersion_snapshot.each {
+
+                                    if (dep.getArtifactId() == it.value.groupId) {
+                                        dep.setGroupId(it.value.group)
+                                        dep.setVersion(it.value.version)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    println '上传到远程测试仓库'
+
+                }
+            }
+        }
+    }
+}

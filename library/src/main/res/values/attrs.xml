@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideMsgView">
+        <attr name="smv_left_padding" format="dimension" />
+        <attr name="smv_right_padding" format="dimension" />
+        <attr name="smv_top_padding" format="dimension" />
+        <attr name="smv_bottom_padding" format="dimension" />
+        <attr name="smv_left_margin" format="dimension" />
+        <attr name="smv_backgroud" format="reference" />
+        <attr name="smv_min_show_time" format="integer" />
+        <attr name="smv_max_show_time" format="integer" />
+        <attr name="smv_duration_time" format="integer" />
+    </declare-styleable>
+</resources>
