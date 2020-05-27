@@ -13,6 +13,7 @@
         android:layout_marginLeft="10dp"
         android:padding="5dp"
         android:visibility="gone"
+        android:text="#ffffff"
         tools:visibility="visible" />
 
 
