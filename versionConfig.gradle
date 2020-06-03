@@ -1,8 +1,8 @@
 ext {
-//    repoType = "release" //发布到正式服务器
-    repoType = "snapshot" //发布到测试服务器
+    repoType = "release" //发布到正式服务器
+//    repoType = "snapshot" //发布到测试服务器
 
-    useLocalLibrary = true
+    useLocalLibrary = false
 
     var = [
             compileSdkVersion: 28,
@@ -12,12 +12,12 @@ ext {
             versionCode      : 100,
             versionName      : "1.0",
 
-            slideMsgVersion  : "1.0.4",
+            slideMsgVersion  : "1.0.5",
     ]
 
     moduleVersion_snapshot = [
             slidemsgview: [
-                    version    : "1.0.4-SNAPSHOT",
+                    version    : "1.0.5-SNAPSHOT",
                     group      : "com.tulv",
                     groupId    : "slidemsgview",
                     type       : "aar",
@@ -27,7 +27,7 @@ ext {
 
     moduleVersion_release = [
             slidemsgview: [
-                    version    : "1.0.4",
+                    version    : "1.0.5",
                     group      : "com.tulv",
                     groupId    : "slidemsgview",
                     type       : "aar",

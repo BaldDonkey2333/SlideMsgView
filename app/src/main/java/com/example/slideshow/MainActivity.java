@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void onClickSend(View view) {
-		slideMsgView.addMsg("!!!!!!!" + System.currentTimeMillis());
+		slideMsgView.addMsg("!!!!!!!1111111111111111111111111111111111111111" + System.currentTimeMillis());
 	}
 
 	public void onClickClear(View view) {
